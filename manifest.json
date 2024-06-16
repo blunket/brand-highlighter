@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "version": "0.0.1",
+    "name": "Brand Highlighter",
+    "description": "An extension that highlights brand names in online store fronts and adds warnings while adding products to the cart for online retailers.",
+    "background": [
+
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": [ "https://*.walmart.com/*", "https://*.amazon.com/*" ],
+            "resources": [ "brands.json" ]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": [ "https://*.walmart.com/*", "https://*.amazon.com/*" ],
+            "js": [ "brand-highlighter.js" ],
+            "css": [ "brand-highlighter.css" ]
+        }
+    ]
+}
