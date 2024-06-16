@@ -1,0 +1,21 @@
+.ext-brand-highlighter-warning {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 500px;
+    background-color: #ffcc00;
+    padding: 10px;
+    z-index: 10000;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.ext-brand-highlighter-warning strong {
+    display: inline-block;
+    margin-right: 6px;
+}
+.ext-brand-highlighter-flagged [data-automation-id="product-title"],
+.ext-brand-highlighter-flagged .lh-title,
+.ext-brand-highlighter-flagged .ext-brand-highlighter-flagged {
+    background-color: #ffe0e0;
+}
