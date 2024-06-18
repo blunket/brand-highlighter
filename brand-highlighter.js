@@ -4,7 +4,7 @@ const safeClass = 'ext-brand-highlighter-safe';
 
 const titleSelectors = {
     'walmart': '.main-content section a[link-identifier] span:not(.' + scannedClass + ')',
-    'amazon': '.s-result-item h2 > a > span:not(.' + scannedClass + ')'
+    'amazon': '#productTitle, .s-result-item h2 > a > span:not(.' + scannedClass + ')'
 }
 
 let currentStore = false;
@@ -24,9 +24,10 @@ function flagItem(storeItem, brand = '') {
     if (!itemTitles_flag.includes(storeItem.innerText)) {
         itemTitles_flag.push(storeItem.innerText);
         console.log("added event listener")
-        let cartBtn = storeItem.parentNode.parentNode.querySelector("button[data-automation-id='add-to-cart']")
-        if (cartBtn) {
-            cartBtn.addEventListener('click', e => {
+        let WalmartCartBtn = storeItem.parentNode.parentNode.querySelector("button[data-automation-id='add-to-cart']")
+        let AmazonCartBtn = document.getElementById("add-to-cart-button")
+        if (WalmartCartBtn) {
+            WalmartCartBtn.addEventListener('click', e => {
                 let warnEl = document.createElement("div");
                 let boldEl = document.createElement("strong");
                 let textEl = document.createElement("span");
@@ -43,6 +44,22 @@ function flagItem(storeItem, brand = '') {
                     warnEl.parentNode.removeChild(warnEl);
                 }, 6000);
             });
+        }else if (AmazonCartBtn) {
+            let warnEl = document.createElement("div");
+            let boldEl = document.createElement("strong");
+            let textEl = document.createElement("span");
+            boldEl.innerText = 'Warning';
+            textEl.innerText = 'Product matches a flagged brand name';
+            if (brand !== '') {
+                textEl.innerText += ': "' + brand + '"';
+            }
+            warnEl.classList.add('ext-brand-highlighter-warning')
+            warnEl.appendChild(boldEl);
+            warnEl.appendChild(textEl);
+            document.body.appendChild(warnEl);
+            setTimeout(() => {
+                debugger;
+            }, 6000);
         }
     }
 }
@@ -70,7 +87,7 @@ function reScan(brands) {
         }
         let itemFlagged = false;
         brands.forEach(brand => {
-            if (storeItem.innerText.toLowerCase().includes(brand.toLowerCase())) {
+            if (storeItem.innerText.toLowerCase().includes(brand.toLowerCase()) && !storeItem.innerText.toLowerCase().includes("compatible")) {
                 console.log("BRAND HIGHLIGHTER: Flagged (matches '" + brand + "'): ", storeItem.innerText);
                 flagItem(storeItem, brand);
                 itemFlagged = true;
