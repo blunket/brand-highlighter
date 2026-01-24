@@ -1,0 +1,23 @@
+{
+  "name": "brand-highlighter",
+  "version": "0.0.2",
+  "description": "An extension that highlights brand names in online store fronts and adds warnings while adding products to the cart for online retailers.",
+  "main": "brand-highlighter.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blunket/brand-highlighter.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/blunket/brand-highlighter/issues"
+  },
+  "homepage": "https://github.com/blunket/brand-highlighter#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}
